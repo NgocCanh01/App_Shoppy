@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+    ImageView btnGoogle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +46,14 @@ public class LoginActivity extends AppCompatActivity {
         inputEmail = findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        btnGoogle = findViewById(R.id.btnGoogle);
+
 
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+
+
 
 
 
@@ -63,6 +69,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 perforLogin();
+            }
+        });
+
+
+        btnGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (LoginActivity.this, GoogleSignInActivity.class);
+                startActivity(intent);
             }
         });
     }
