@@ -42,5 +42,9 @@ dependencies {
 
     implementation platform('com.google.firebase:firebase-bom:31.2.3')
     implementation 'com.google.android.gms:play-services-auth:20.4.1'
+    implementation 'com.facebook.android:facebook-android-sdk:16.0.0'
+    implementation 'com.android.support:support-annotations:27.0.2'
+    implementation 'android.arch.lifecycle:runtime:1.0.3'
+
 
 }
