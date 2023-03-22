@@ -7,11 +7,6 @@
     android:background="@drawable/bg"
     tools:context=".Activities.LoginActivity">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#6D000000"/>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -92,7 +87,7 @@
                 android:id="@+id/forgotPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:text="Forgot Password?"
                 android:textColor="@color/white"
                 android:textSize="15sp"
@@ -185,14 +180,14 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnPhone"
+                app:layout_constraintEnd_toStartOf="@+id/btnGit"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/btnGoogle"
                 app:layout_constraintTop_toBottomOf="@+id/textView4"
                 app:srcCompat="@drawable/facebook_logo" />
 
             <ImageView
-                android:id="@+id/btnPhone"
+                android:id="@+id/btnGit"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:layout_constraintBottom_toBottomOf="@+id/btnFacebook"
@@ -200,7 +195,13 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/btnFacebook"
                 app:layout_constraintTop_toTopOf="@+id/btnFacebook"
-                app:srcCompat="@drawable/phone_logo" />
+                app:srcCompat="@drawable/github_logo" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#6D000000"
+                tools:layout_editor_absoluteY="3dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
