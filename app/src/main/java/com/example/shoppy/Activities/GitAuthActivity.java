@@ -1,10 +1,10 @@
 package com.example.shoppy.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,13 +71,7 @@ public class GitAuthActivity extends AppCompatActivity {
                                         new OnSuccessListener<AuthResult>() {
                                             @Override
                                             public void onSuccess(AuthResult authResult) {
-                                                // User is signed in.
-                                                // IdP data available in
-                                                // authResult.getAdditionalUserInfo().getProfile().
-                                                // The OAuth access token can also be retrieved:
-                                                // ((OAuthCredential)authResult.getCredential()).getAccessToken().
-                                                // The OAuth secret can be retrieved by calling:
-                                                // ((OAuthCredential)authResult.getCredential()).getSecret().
+
                                             }
                                         })
                                 .addOnFailureListener(
