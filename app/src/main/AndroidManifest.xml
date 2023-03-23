@@ -15,6 +15,13 @@
         android:theme="@style/Theme.Shoppy"
         tools:targetApi="33">
         <activity
+            android:name=".Activities.GitAuthActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Activities.FacebookAuthActivity"
             android:exported="false">
             <meta-data

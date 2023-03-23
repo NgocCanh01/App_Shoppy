@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseUser mUser;
     ImageView btnGoogle;
     ImageView btnFacebook;
+    ImageView btnGit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +53,13 @@ public class LoginActivity extends AppCompatActivity {
         btnGoogle = findViewById(R.id.btnGoogle);
         btnFacebook = findViewById(R.id.btnFacebook);
         forgotPassword = findViewById(R.id.forgotPassword);
+        btnGit = findViewById(R.id.btnGit);
 
 
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-
-
-
 
 
 
@@ -98,6 +97,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        btnGit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,  GitAuthActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
