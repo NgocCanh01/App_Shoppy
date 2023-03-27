@@ -15,6 +15,7 @@ import com.example.shoppy.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.OAuthProvider;
@@ -38,7 +39,6 @@ public class GitAuthActivity extends AppCompatActivity {
         inputEmail = findViewById(R.id.inputEmail);
         btnLogin = findViewById(R.id.btnLogin);
         mAuth = FirebaseAuth.getInstance();
-
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {

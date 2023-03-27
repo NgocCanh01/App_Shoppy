@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                perforLogin();
+                performLogin();
             }
         });
 
@@ -109,31 +109,16 @@ public class LoginActivity extends AppCompatActivity {
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = inputEmail.getText().toString();
-                progressDialog.setTitle("Sending...");
-                progressDialog.show();
-                firebaseAuth.sendPasswordResetEmail(email)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                progressDialog.cancel();
-                                Toast.makeText(LoginActivity.this,"Email sent", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        progressDialog.cancel();
-                        Toast.makeText(LoginActivity.this, e.getMessage(),Toast.LENGTH_SHORT).show();
-                    }
-                });
+             Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+             startActivity(intent);
+
             }
         });
 
 
     }
 
-    private void perforLogin() {
+    private void performLogin() {
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
 
@@ -165,9 +150,10 @@ public class LoginActivity extends AppCompatActivity {
             });
 
 
-
         }
          }
+
+
 
     private void sendUserToNextActivity() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
