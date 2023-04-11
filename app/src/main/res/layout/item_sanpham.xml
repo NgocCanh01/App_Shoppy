@@ -8,9 +8,9 @@
     <ImageView
         android:id="@+id/item_image"
         android:src="@drawable/ic_perm_media"
-        android:layout_width="45dp"
+        android:layout_width="55dp"
         android:layout_marginLeft="10dp"
-        android:layout_height="45dp"/>
+        android:layout_height="55dp"/>
     <TextView
         android:id="@+id/item_tensp"
         android:text="Điện thoại"

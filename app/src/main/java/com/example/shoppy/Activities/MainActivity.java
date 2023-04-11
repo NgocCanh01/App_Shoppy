@@ -8,12 +8,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     - change:MainActiviti, main_xml
         STEP 3,4: TẠO ADAPTER CHO LISTVIEW LOAISP, KẾT NỐI SERVER
         STEP 5 - 8: TẠO ADAPTER CHO RECYCLEVIEW  & HIỂN THỊ DATA MÀN HÌNH CHÍNH
+        STEP 9: BẮT EVENT CHO MENU CHUYỂN MÀN
      */
     Toolbar toolbar;
     ViewFlipper viewFlipper;
@@ -72,9 +75,32 @@ public class MainActivity extends AppCompatActivity {
             //Hàm kết nối file php lấy tên loại sp
             getLoaiSanPham();
             getSpMoi();
+            getEventClick();
         } else {
             Toast.makeText(getApplicationContext(), "Không có internet, vui lòng kết nối!!!", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void getEventClick() {
+        listViewMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        Intent trangChu = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(trangChu);
+                        break;
+                    case 1:
+                        Intent dienThoai = new Intent(getApplicationContext(),MobileActivity.class);
+                        startActivity(dienThoai);
+                        break;
+                    case 2:
+                        Intent laptop = new Intent(getApplicationContext(),LaptopActivity.class);
+                        startActivity(laptop);
+                         break;
+                }
+            }
+        });
     }
 
     private void getSpMoi() {
