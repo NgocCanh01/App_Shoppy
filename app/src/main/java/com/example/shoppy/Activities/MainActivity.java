@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -20,7 +21,9 @@ import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
 import com.example.shoppy.Activities.adapter.LoaiSpAdapter;
+import com.example.shoppy.Activities.adapter.SanPhamMoiAdapter;
 import com.example.shoppy.Activities.model.LoaiSp;
+import com.example.shoppy.Activities.model.SanPhamMoi;
 import com.example.shoppy.Activities.retrofit.ApiBanHang;
 import com.example.shoppy.Activities.retrofit.RetrofitClient;
 import com.example.shoppy.Activities.utils.Ultils;
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         STEP 1,2: GIAO DIỆN MÀN HÌNH CHÍNH, QUẢNG CÁO:
     - change:MainActiviti, main_xml
         STEP 3,4: TẠO ADAPTER CHO LISTVIEW LOAISP, KẾT NỐI SERVER
+        STEP 5 - 8: TẠO ADAPTER CHO RECYCLEVIEW  & HIỂN THỊ DATA MÀN HÌNH CHÍNH
      */
     Toolbar toolbar;
     ViewFlipper viewFlipper;
@@ -50,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
     List<LoaiSp> mangLoaiSp;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
+    List<SanPhamMoi> mangSpMoi;
+    SanPhamMoiAdapter spAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,17 +65,36 @@ public class MainActivity extends AppCompatActivity {
 
         anhXa();
         actionBar();
-//        ActionViewFlipper();
-        //STEP 3:
+        //STEP 2:
         if (isConnected(this)) {
-            Toast.makeText(getApplicationContext(),"ok ket noi",Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(),"ok ket noi",Toast.LENGTH_LONG).show();
             actionViewFlipper();//add QC cho viewFlipp
             //Hàm kết nối file php lấy tên loại sp
             getLoaiSanPham();
+            getSpMoi();
         } else {
             Toast.makeText(getApplicationContext(), "Không có internet, vui lòng kết nối!!!", Toast.LENGTH_LONG).show();
         }
     }
+
+    private void getSpMoi() {
+        compositeDisposable.add(apiBanHang.getSpMoi()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(sanPhamMoiModel -> {
+                            if (sanPhamMoiModel.isSuccess()) {
+                                mangSpMoi = sanPhamMoiModel.getResult();
+                                spAdapter = new SanPhamMoiAdapter(getApplicationContext(), mangSpMoi);
+                                recyclerViewMain.setAdapter(spAdapter);
+                            }
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(), "Không kết nối được tới server", Toast.LENGTH_LONG).show();
+                        }
+                ));
+
+    }
+
     private void getLoaiSanPham() {
         compositeDisposable.add(apiBanHang.getLoaiSp()
                 .subscribeOn(Schedulers.io())
@@ -76,12 +102,12 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(
                         loaiSpModel -> {
                             if (loaiSpModel.isSuccess()) {
-                                Toast.makeText(getApplicationContext(),loaiSpModel.getResult().get(0).getTensanpham(),Toast.LENGTH_LONG).show();
+//                                Toast.makeText(getApplicationContext(),loaiSpModel.getResult().get(0).getTensanpham(),Toast.LENGTH_LONG).show();
                                 //STEP 4
                                 //Thêm data cho list view
-//                                mangLoaiSp = loaiSpModel.getResult();//nối data từ loại sp model vào mangLoaiSp
-//                                loaiSpAdapter = new LoaiSpAdapter(getApplicationContext(), mangLoaiSp);
-//                                listViewMain.setAdapter(loaiSpAdapter);
+                                mangLoaiSp = loaiSpModel.getResult();//nối data từ loại sp model vào mangLoaiSp
+                                loaiSpAdapter = new LoaiSpAdapter(getApplicationContext(), mangLoaiSp);
+                                listViewMain.setAdapter(loaiSpAdapter);
                             }
                         }
 
@@ -125,6 +151,9 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.tbMain);
         viewFlipper = findViewById(R.id.vfMain);
         recyclerViewMain = findViewById(R.id.rcSanPham);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
+        recyclerViewMain.setLayoutManager(layoutManager);
+        recyclerViewMain.setHasFixedSize(true);
         listViewMain = findViewById(R.id.lvMain);
         navigationView = findViewById(R.id.nvMain);
         drawerLayout = findViewById(R.id.drawerLayoutMain);
@@ -132,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
         //STEP 2:
         //Khởi tạo list
         mangLoaiSp = new ArrayList<>();
+        mangSpMoi = new ArrayList<>();
 //        //Khởi tạo Adapter
 //        loaiSpAdapter = new LoaiSpAdapter(getApplicationContext(), mangLoaiSps);
 //        lvMain.setAdapter(loaiSpAdapter);
