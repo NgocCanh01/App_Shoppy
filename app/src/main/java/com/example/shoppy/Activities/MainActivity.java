@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         STEP 3,4: TẠO ADAPTER CHO LISTVIEW LOAISP, KẾT NỐI SERVER
         STEP 5 - 8: TẠO ADAPTER CHO RECYCLEVIEW  & HIỂN THỊ DATA MÀN HÌNH CHÍNH
         STEP 9: BẮT EVENT CHO MENU CHUYỂN MÀN
+        STEP 10 11 12: TẠO ADAPTER CHO RECYCLEVIEW MÀN HÌNH ĐT & ĐƯA DATA VÀO RECYCLE SCREEN ĐT
      */
     Toolbar toolbar;
     ViewFlipper viewFlipper;
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 1:
                         Intent dienThoai = new Intent(getApplicationContext(),MobileActivity.class);
+                        dienThoai.putExtra("loai",1);
                         startActivity(dienThoai);
                         break;
                     case 2:
