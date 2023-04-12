@@ -21,6 +21,13 @@
         android:theme="@style/Theme.Shoppy"
         tools:targetApi="33">
         <activity
+            android:name=".Activities.ChiTietActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Activities.LaptopActivity"
             android:exported="false">
             <meta-data
@@ -29,7 +36,8 @@
         </activity>
         <activity
             android:name=".Activities.MobileActivity"
-            android:exported="false">
+            android:exported="false"
+            android:usesCleartextTraffic="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
