@@ -26,7 +26,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MobileActivity extends AppCompatActivity {
-    Toolbar toolbar;
+    Toolbar toolbarDT;
     RecyclerView recyclerView;
     ApiBanHang apiBanHang;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -129,9 +129,9 @@ public class MobileActivity extends AppCompatActivity {
     }
 
     private void actionToolbar() {
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbarDT);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        toolbarDT.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -139,8 +139,8 @@ public class MobileActivity extends AppCompatActivity {
         });
     }
 
-    private void anhXa() {
-        toolbar = findViewById(R.id.toolbarDT);
+    public void anhXa() {
+        toolbarDT = findViewById(R.id.toolbarDT);
         recyclerView = findViewById(R.id.recycleviewDT);
 //        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);//STEP 13

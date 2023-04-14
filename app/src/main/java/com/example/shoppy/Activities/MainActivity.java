@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         STEP 10 11 12: TẠO ADAPTER CHO RECYCLEVIEW MÀN HÌNH ĐT & ĐƯA DATA VÀO RECYCLE SCREEN ĐT
         STEP 13: TẠO LOADMORE CHO RECYCLE VIEW ĐIỆN THOẠI
         STEP 14: BẮT EVENT CHUYỂN MÀN CHO RECYCLE VIEW ĐIỆN THOẠI
+        STEP 15: ĐỔ DATA CHO LAPTOP
+        STEP 16: GIAO DIỆN CHI TIẾT SẢN PHẨM
      */
     Toolbar toolbar;
     ViewFlipper viewFlipper;
@@ -99,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(dienThoai);
                         break;
                     case 2:
-                        Intent laptop = new Intent(getApplicationContext(),LaptopActivity.class);
+                        Intent laptop = new Intent(getApplicationContext(),MobileActivity.class);
+                        laptop.putExtra("loai",2);//STEP 14
                         startActivity(laptop);
                          break;
                 }

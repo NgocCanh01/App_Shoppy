@@ -6,4 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".Activities.LaptopActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarLT"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#B2B4C1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Laptop"></androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleviewDT"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarLT" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

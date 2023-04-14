@@ -52,11 +52,11 @@ public class DienThoaiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         if(holder instanceof MyViewHolder){
             MyViewHolder myViewHolder = (MyViewHolder) holder;
             SanPhamMoi sanPham = array.get(position);
-            myViewHolder.tensp.setText(sanPham.getTensanpham());
+            myViewHolder.tensp.setText(sanPham.getTensanpham().trim());
             DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
             myViewHolder.giasp.setText("Giá: "+decimalFormat.format(Double.parseDouble(sanPham.getGiasp()))+"Đ");
             myViewHolder.mota.setText(sanPham.getMota());
-            myViewHolder.idSp.setText(sanPham.getId()+"");
+//            myViewHolder.idSp.setText(sanPham.getId()+"");//STEP 14
             Glide.with(context).load(sanPham.getHinhanh()).into(myViewHolder.hinhAnh);
             //STEP 14
             myViewHolder.setItemClickListener(new ItemClickListener() {
@@ -107,7 +107,7 @@ public class DienThoaiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             giasp = itemView.findViewById(R.id.tvItemDt_Gia);
             mota = itemView.findViewById(R.id.tvItemDt_Mota);
             hinhAnh = itemView.findViewById(R.id.image_itemDt);
-            idSp = itemView.findViewById(R.id.tvItemDt_idSp);
+//            idSp = itemView.findViewById(R.id.tvItemDt_idSp);//STEP 14
             itemView.setOnClickListener(this);//STEP 14
         }
 
